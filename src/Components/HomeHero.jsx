@@ -9,14 +9,14 @@ const RightPartPages = [
   [
     { name: 'Chinese Astrology', icon: <GiHorseHead size={24} color="white" /> },
     { name: 'Vasthusastra', icon: <FaHome size={24} color="white" /> },
-    { name: 'Carrer Tarot', icon: <FaUser size={24} color="white" /> },
+    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> }, // Fixed typo from "Carrer" to "Career"
     { name: 'Love Tarot', icon: <FaHeart size={24} color="white" /> },
     { name: 'Numerology', icon: <GiTwoCoins size={24} color="white" /> }
   ],
   [
     { name: 'Chinese Astrology', icon: <GiHorseHead size={24} color="white" /> },
     { name: 'Vasthusastra', icon: <FaHome size={24} color="white" /> },
-    { name: 'Carrer Tarot', icon: <FaUser size={24} color="white" /> },
+    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> }, // Fixed typo
     { name: 'Love Tarot', icon: <FaHeart size={24} color="white" /> },
     { name: 'Numerology', icon: <GiTwoCoins size={24} color="white" /> }
   ]
@@ -103,7 +103,7 @@ const HomeHero = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center min-h-[120vh] flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-10"
+      className="relative bg-cover bg-center h-[60vh] lg:h-[120vh] flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-10"
       style={{
         backgroundImage: `url("https://www.webstrot.com/html/horoscope/light_version/images/header/slide.jpg")`
       }}
@@ -112,7 +112,7 @@ const HomeHero = () => {
 
       {/* Left Text */}
       <div
-        className="w-full md:w-1/2 text-white space-y-6 z-20 grid justify-center items-center mb-10 md:mb-0 overflow-hidden"
+        className="w-full mt-10 md:w-1/2 text-white space-y-6 z-20 grid justify-center items-center mb-10 md:mb-0 overflow-hidden"
         style={{ height: slideHeight }}
       >
         <AnimatePresence initial={true} custom={direction} mode="wait">
@@ -136,12 +136,12 @@ const HomeHero = () => {
             <AnimatedHeading
               keyId={page}
               text={LeftTextPages[page].heading}
-              className="text-4xl md:text-5xl font-bold text-center md:text-left"
+              className="text-xl md:text-5xl font-bold text-center md:text-left"
             />
 
             {/* Paragraph fade-in */}
             <motion.p
-              key={`para-${page}`} // force re-animate paragraph on page change
+              key={`para-${page}`}
               variants={paragraphVariant}
               initial="hidden"
               animate="visible"
@@ -150,17 +150,17 @@ const HomeHero = () => {
               {LeftTextPages[page].paragraph}
             </motion.p>
             <Link to="/about">
-            <button className="bg-sky-500 cursor-pointer mb-2 w-2/3 md:w-1/3 hover:bg-sky-600 text-white px-8 py-3 rounded-full font-semibold mx-auto md:mx-0">
-              READ MORE
-            </button>
+              <button className="bg-sky-500 cursor-pointer mb-2 w-2/3 md:w-1/3 hover:bg-sky-600 text-white px-8 py-3 rounded-full font-semibold mx-auto md:mx-0 transition-colors duration-300">
+                READ MORE
+              </button>
             </Link>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Right Sidebar */}
+      {/* Right Sidebar - Hidden on mobile */}
       <div
-        className="w-full md:w-1/3 overflow-hidden relative z-20 flex justify-start"
+        className="hidden md:block w-full md:w-1/3 overflow-hidden relative z-20 flex justify-start"
         style={{ height: slideHeight }}
       >
         <AnimatePresence initial={true} custom={direction} mode="wait">
@@ -196,35 +196,7 @@ const HomeHero = () => {
         </AnimatePresence>
       </div>
 
-      {/* Prev Button */}
-      <div className="absolute left-2 top-1/2 -translate-y-1/2 z-20 md:static md:mr-2 md:order-first">
-        <button
-          onClick={() => paginate(-1)}
-          className="bg-orange-500 text-white cursor-pointer flex items-center px-4 py-6 font-bold text-xs rounded-md hover:bg-orange-600"
-          aria-label="Previous"
-        >
-          <IoIosArrowBack size={20} />
-          <div className="flex flex-col ml-1  select-none">
-            <span>PR</span>
-            <span>EV</span>
-          </div>
-        </button>
-      </div>
 
-      {/* Next Button */}
-      <div className="absolute right-2 top-1/2  -translate-y-1/2 z-20 md:static md:ml-2 md:order-last">
-        <button
-          onClick={() => paginate(1)}
-          className="bg-orange-500 text-white flex cursor-pointer items-center px-4 py-6 font-bold text-xs rounded-md hover:bg-orange-600"
-          aria-label="Next"
-        >
-          <div className="flex flex-col mr-1 text-right select-none">
-            <span>NE</span>
-            <span>XT</span>
-          </div>
-          <IoIosArrowForward size={20} />
-        </button>
-      </div>
     </div>
   )
 }

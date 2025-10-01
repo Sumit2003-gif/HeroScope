@@ -133,19 +133,7 @@ const HomeService = () => {
         quis bibendum auctor, nisi elit consequat hello Aenean world.
       </p>
 
-      {/* Filter Buttons */}
-      <div className="flex justify-center gap-4 mb-12 flex-wrap">
-        <button className="px-5 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition focus:outline-none focus:ring-2 focus:ring-orange-400">
-          ALL
-        </button>
-        <button className="px-5 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition focus:outline-none focus:ring-2 focus:ring-orange-400">
-          PAID SERVICES
-        </button>
-        <button className="px-5 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition focus:outline-none focus:ring-2 focus:ring-orange-400">
-          FREE SERVICES
-        </button>
-      </div>
-
+      
       {/* Cards Grid with stagger animation */}
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"

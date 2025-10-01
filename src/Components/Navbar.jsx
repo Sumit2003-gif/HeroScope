@@ -15,11 +15,15 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchFocused, setSearchFocused] = useState(false)
   const [showNavbar, setShowNavbar] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Keep track of previous scroll position
   const prevScrollPos = useRef(0)
 
   useEffect(() => {
+    // Check if mobile on initial load
+    setIsMobile(window.innerWidth < 768)
+    
     prevScrollPos.current = window.pageYOffset
 
     const handleScroll = () => {
@@ -35,8 +39,17 @@ const Navbar = () => {
       prevScrollPos.current = currentScrollPos
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return (
@@ -44,7 +57,7 @@ const Navbar = () => {
       className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 md:px-20 py-4 fixed w-full z-50 shadow-lg"
       initial={false}
       animate={{
-        top: showNavbar ? '90px' : '-100px',
+        top: showNavbar ? (isMobile ? 0 : 90) : -100,
         opacity: showNavbar ? 1 : 0,
       }}
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}
