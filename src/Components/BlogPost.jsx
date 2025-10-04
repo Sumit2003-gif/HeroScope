@@ -25,7 +25,7 @@ const blogData = [
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1549887534-627fc3e9e1c9?auto=format&fit=crop&w=800&q=80',
+    url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80',
     header: 'Zodiac Signs Ranked by Intelligence',
     text: 'Do zodiac signs affect intelligence? We take a lighthearted look at the stars and brains.',
     category: 'Zodiac',
@@ -61,7 +61,7 @@ const blogData = [
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1509228627152-2132efb1d240?auto=format&fit=crop&w=800&q=80',
+    url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80',
     header: 'Crystal Healing: What You Need to Know',
     text: 'Curious about crystal healing? Here’s a beginner’s guide to popular stones and how they’re used.',
     category: 'Healing',
@@ -97,7 +97,7 @@ const blogData = [
   },
   {
     id: 9,
-    url: 'https://images.unsplash.com/photo-1486308510493-cb52c3cf89a7?auto=format&fit=crop&w=800&q=80',
+    url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80',
     header: 'The Power of Journaling for Mental Clarity',
     text: 'Explore how daily journaling can reduce stress, boost creativity, and bring emotional balance.',
     category: 'Mindfulness',

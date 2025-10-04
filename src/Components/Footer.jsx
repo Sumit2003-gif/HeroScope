@@ -1,5 +1,13 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaEnvelope, FaArrowUp } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaYoutube,
+  FaLinkedinIn,
+  FaEnvelope,
+  FaArrowUp,
+} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -18,12 +26,9 @@ const Footer = () => {
           <p className="max-w-xs mx-auto md:mx-0 text-gray-400 mb-4">
             Donec id elit non mi porta gravida at eget metus. Donec id elit non Vestibulum id ligula porta felis euism od semper. Nulla vitae elit libero
           </p>
-          <a href="#" className="text-orange-500 hover:underline font-semibold">
-            Read More &rarr;
-          </a>
 
-          {/* Social Icons */}
-          <div className="flex justify-center md:justify-start gap-4 mt-6">
+          {/* Social Icons (Moved Here) */}
+          <div className="flex justify-center md:justify-start gap-4 mt-4">
             {[FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn].map((Icon, index) => (
               <a
                 key={index}
@@ -45,9 +50,12 @@ const Footer = () => {
           <p className="mb-6 max-w-sm mx-auto md:mx-0 text-gray-400">
             Need help with designing your brand new website or you have any idea and thinking of getting it’s branding done then get a FREE quote today.
           </p>
-          <button className="bg-orange-500 text-white rounded-full px-8 py-3 font-semibold hover:bg-orange-600 transition">
+          <Link
+          to='/contact'>
+          <button className="bg-orange-500 cursor-pointer text-white rounded-full px-8 py-3 font-semibold hover:bg-orange-600 transition">
             FREE QUOTE
           </button>
+          </Link>
         </div>
 
         {/* Right Section */}
@@ -61,14 +69,21 @@ const Footer = () => {
             Visit Us 123 Fake Street- London 12358<br />
             United Kingdom
           </p>
-          <form className="max-w-sm mx-auto md:mx-0 flex items-center border border-gray-700 rounded px-3 py-2" onSubmit={e => e.preventDefault()}>
+          <form
+            className="max-w-sm mx-auto md:mx-0 flex items-center border border-gray-700 rounded px-3 py-2"
+            onSubmit={e => e.preventDefault()}
+          >
             <input
               type="email"
               placeholder="Email Address..."
               className="bg-transparent focus:outline-none flex-grow text-gray-300 placeholder-gray-500"
               required
             />
-            <button type="submit" className="text-orange-500 ml-3 hover:text-orange-600 transition" aria-label="Subscribe">
+            <button
+              type="submit"
+              className="text-orange-500 ml-3 hover:text-orange-600 transition"
+              aria-label="Subscribe"
+            >
               <FaEnvelope size={20} />
             </button>
           </form>

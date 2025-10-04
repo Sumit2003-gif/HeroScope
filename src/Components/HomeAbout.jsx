@@ -105,7 +105,7 @@ const HomeAbout = () => {
           {/* Button */}
           
           <MotionLink
-          to="/about"
+          to="/blog"
             variants={fadeUp}
             whileHover={{ scale: 1.05, backgroundColor: "#0284c7" }}
             className="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-300"

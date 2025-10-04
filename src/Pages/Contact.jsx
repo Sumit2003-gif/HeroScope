@@ -177,7 +177,7 @@ const ContactSection = () => {
             
             <motion.button
               type="submit"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-8 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition w-full md:w-auto"
+              className="bg-gradient-to-r cursor-pointer from-orange-500 to-orange-600 text-white py-3 px-8 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition w-full md:w-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -19,7 +19,7 @@ const Blog = () => {
         <div className="relative z-10 w-full px-4 sm:px-20 flex flex-col sm:flex-row justify-between items-center text-white text-center sm:text-left">
           <h1 className="text-3xl sm:text-4xl font-bold mb-2 sm:mb-0">Blog </h1>
           <p className="text-sm">
-            <Link to="/" className="hover:underline text-orange-400">Home</Link> &nbsp; &lt; &nbsp; About Us
+            <Link to="/" className="hover:underline text-orange-400">Home</Link> &nbsp; &lt; &nbsp; Blog
           </p>
         </div>
       </section>
