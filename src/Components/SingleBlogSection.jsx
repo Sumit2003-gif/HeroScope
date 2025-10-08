@@ -64,7 +64,7 @@ const SingleBlog = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
       {/* Back Button */}
       <motion.div
         variants={fadeInUp}

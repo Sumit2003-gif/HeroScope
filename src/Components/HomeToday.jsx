@@ -69,23 +69,17 @@ const HomeToday = () => {
             style={{ backgroundImage: `url(${active.background})` }}
           >
             <div className="absolute inset-0 bg-black/60" />
-            <div className="relative z-10 flex flex-col items-center justify-center text-white py-16 px-6 md:px-12 h-full">
+            <div className="relative z-10 flex flex-col  items-center justify-center text-white py-16 px-6 md:px-12 h-full">
               <motion.h2 variants={textVariants.hidden} animate={textVariants.visible(0.2)} className="text-lg md:text-xl font-semibold italic mb-2">
                 {active.title}
               </motion.h2>
-              <motion.h1 variants={textVariants.hidden} animate={textVariants.visible(0.4)} className="text-3xl md:text-4xl font-bold uppercase leading-snug mb-6">
+              <motion.h1 variants={textVariants.hidden} animate={textVariants.visible(0.4)} className="text-2xl md:text-4xl font-bold uppercase leading-snug mb-6">
                 {active.heading}
               </motion.h1>
               <motion.p variants={textVariants.hidden} animate={textVariants.visible(0.6)} className="text-gray-300 mb-8 max-w-2xl text-sm md:text-base">
                 {active.description}
               </motion.p>
-              <motion.div variants={textVariants.hidden} animate={textVariants.visible(0.8)}>
-                <Link to="/contact">
-                  <button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-3 rounded-full transition shadow-md">
-                    CONTACT US
-                  </button>
-                </Link>
-              </motion.div>
+             
             </div>
           </motion.div>
         </AnimatePresence>

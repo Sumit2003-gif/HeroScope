@@ -194,7 +194,7 @@ const HomeHero = () => {
                 <AnimatedHeading
                   keyId={page}
                   text={LeftTextPages[page].heading}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                  className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
                 />
                 <div className="w-24 h-1 bg-orange-500 mx-auto lg:mx-0"></div>
               </div>
