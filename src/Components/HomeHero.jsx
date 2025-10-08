@@ -9,14 +9,14 @@ const RightPartPages = [
   [
     { name: 'Chinese Astrology', icon: <GiHorseHead size={24} color="white" /> },
     { name: 'Vasthusastra', icon: <FaHome size={24} color="white" /> },
-    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> }, // Fixed typo from "Carrer" to "Career"
+    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> },
     { name: 'Love Tarot', icon: <FaHeart size={24} color="white" /> },
     { name: 'Numerology', icon: <GiTwoCoins size={24} color="white" /> }
   ],
   [
     { name: 'Chinese Astrology', icon: <GiHorseHead size={24} color="white" /> },
     { name: 'Vasthusastra', icon: <FaHome size={24} color="white" /> },
-    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> }, // Fixed typo
+    { name: 'Career Tarot', icon: <FaUser size={24} color="white" /> },
     { name: 'Love Tarot', icon: <FaHeart size={24} color="white" /> },
     { name: 'Numerology', icon: <GiTwoCoins size={24} color="white" /> }
   ]
@@ -35,19 +35,17 @@ const LeftTextPages = [
   }
 ]
 
-const slideHeight = 300 // px
-
 const slideVariants = {
   enter: (direction) => ({
-    y: direction > 0 ? slideHeight : -slideHeight,
+    x: direction > 0 ? 1000 : -1000,
     opacity: 0
   }),
   center: {
-    y: 0,
+    x: 0,
     opacity: 1
   },
   exit: (direction) => ({
-    y: direction < 0 ? slideHeight : -slideHeight,
+    x: direction < 0 ? 1000 : -1000,
     opacity: 0
   })
 }
@@ -71,8 +69,8 @@ const paragraphVariant = {
 }
 
 const sidebarItemVariant = {
-  hidden: { opacity: 0, x: 20 },
-  visible: { opacity: 1, x: 0 }
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 }
 }
 
 const AnimatedHeading = ({ text, className, keyId }) => (
@@ -101,102 +99,162 @@ const HomeHero = () => {
     })
   }
 
+  // Handle touch events for mobile swipe
+  const handleTouchStart = (e) => {
+    const touchDown = e.touches[0].clientX
+    setTouchPosition(touchDown)
+  }
+
+  const handleTouchMove = (e) => {
+    const touchDown = touchPosition
+    if (touchDown === null) {
+      return
+    }
+
+    const currentTouch = e.touches[0].clientX
+    const diff = touchDown - currentTouch
+
+    if (diff > 5) {
+      // Swipe left
+      paginate(1)
+    } else if (diff < -5) {
+      // Swipe right
+      paginate(-1)
+    }
+
+    setTouchPosition(null)
+  }
+
+  const [touchPosition, setTouchPosition] = useState(null)
+
   return (
     <div
-      className="relative bg-cover bg-center h-[60vh] lg:h-[120vh] flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-10"
+      className="relative bg-cover bg-center min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 py-10 overflow-hidden"
       style={{
         backgroundImage: `url("https://www.webstrot.com/html/horoscope/light_version/images/header/slide.jpg")`
       }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
     >
-      <div className="absolute inset-0 bg-black/70 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 z-10"></div>
 
-      {/* Left Text */}
-      <div
-        className="w-full mt-10 md:w-1/2 text-white space-y-6 z-20 grid justify-center items-center mb-10 md:mb-0 overflow-hidden"
-        style={{ height: slideHeight }}
+      {/* Navigation Arrows */}
+      <button 
+        onClick={() => paginate(-1)}
+        className="absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        aria-label="Previous slide"
       >
-        <AnimatePresence initial={true} custom={direction} mode="wait">
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ type: 'tween', duration: 0.6 }}
-            className="space-y-6"
-          >
-            <img
-              src="https://www.webstrot.com/html/horoscope/light_version/images/header/slider_logo.png"
-              alt="logo"
-              className="h-16 mx-auto md:mx-0"
-            />
+        <IoIosArrowBack className="text-2xl" />
+      </button>
+      <button 
+        onClick={() => paginate(1)}
+        className="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+        aria-label="Next slide"
+      >
+        <IoIosArrowForward className="text-2xl" />
+      </button>
 
-            {/* Animated heading with letter animation */}
-            <AnimatedHeading
-              keyId={page}
-              text={LeftTextPages[page].heading}
-              className="text-xl md:text-5xl font-bold text-center md:text-left"
-            />
-
-            {/* Paragraph fade-in */}
-            <motion.p
-              key={`para-${page}`}
-              variants={paragraphVariant}
-              initial="hidden"
-              animate="visible"
-              className="text-gray-300 text-center md:text-left px-4 md:px-0 max-w-md mx-auto md:mx-0"
-            >
-              {LeftTextPages[page].paragraph}
-            </motion.p>
-            <Link to="/about">
-              <button className="bg-sky-500 cursor-pointer mb-2 w-2/3 md:w-1/3 hover:bg-sky-600 text-white px-8 py-3 rounded-full font-semibold mx-auto md:mx-0 transition-colors duration-300">
-                READ MORE
-              </button>
-            </Link>
-          </motion.div>
-        </AnimatePresence>
+      {/* Slide Indicators */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
+        {LeftTextPages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setPage([index, index > page ? 1 : -1])}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${page === index ? 'bg-white scale-125' : 'bg-white/50'}`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
 
-      {/* Right Sidebar - Hidden on mobile */}
-      <div
-        className="hidden md:block w-full md:w-1/3 overflow-hidden relative z-20 flex justify-start"
-        style={{ height: slideHeight }}
-      >
-        <AnimatePresence initial={true} custom={direction} mode="wait">
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ type: 'tween', duration: 0.6 }}
-            className="flex flex-col gap-4 items-end"
-          >
-            {RightPartPages[page].map((item, index) => (
-              <motion.div
-                key={index}
-                variants={sidebarItemVariant}
+      {/* Main Content */}
+      <div className="relative z-20 w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Left Content */}
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <AnimatePresence initial={true} custom={direction} mode="wait">
+            <motion.div
+              key={page}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ type: 'tween', duration: 0.6 }}
+              className="w-full"
+            >
+              <div className="mb-8">
+                <img
+                  src="https://www.webstrot.com/html/horoscope/light_version/images/header/slider_logo.png"
+                  alt="logo"
+                  className="h-20 mx-auto lg:mx-0"
+                />
+              </div>
+
+              {/* Animated heading */}
+              <div className="mb-6">
+                <AnimatedHeading
+                  keyId={page}
+                  text={LeftTextPages[page].heading}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                />
+                <div className="w-24 h-1 bg-orange-500 mx-auto lg:mx-0"></div>
+              </div>
+
+              {/* Paragraph */}
+              <motion.p
+                key={`para-${page}`}
+                variants={paragraphVariant}
                 initial="hidden"
                 animate="visible"
-                exit="hidden"
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="flex items-center gap-4"
+                className="text-gray-200 mb-8 text-lg max-w-lg mx-auto lg:mx-0"
               >
-                <div className="p-4 rounded-full bg-orange-500 border-4 border-gray-500">
-                  {item.icon}
-                </div>
-                <div className="bg-black/40 text-white px-10 py-3 rounded-full backdrop-blur-sm w-[200px] text-center truncate text-lg">
-                  {item.name}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                {LeftTextPages[page].paragraph}
+              </motion.p>
+
+              {/* Button */}
+              <div className="mt-6">
+                <Link to="/about">
+                  <button className="bg-gradient-to-r cursor-pointer from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    READ MORE
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Right Content - Services Grid */}
+        <div className="w-full lg:w-1/2">
+          <AnimatePresence initial={true} custom={direction} mode="wait">
+            <motion.div
+              key={page}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ type: 'tween', duration: 0.6 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {RightPartPages[page].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={sidebarItemVariant}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="bg-black/30 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/20 flex flex-col items-center text-center group"
+                >
+                  <div className="p-4 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-white font-semibold text-lg">{item.name}</h3>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
-
-
     </div>
   )
 }

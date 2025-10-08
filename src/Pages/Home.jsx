@@ -13,7 +13,7 @@ import StatsSection from '../Components/StatsSection'
 const Home = () => {
   return (
     <div>
-      <section>
+      <section className='mt-8 md:mt-16'>
         <HomeHero/>
       </section>
       <section>
@@ -22,9 +22,7 @@ const Home = () => {
       <section>
         <HomeAbout/>
       </section>
-      <section>
-        <HomeZodac/>
-      </section>
+     
       <section>
         <HomeService/>
       </section>

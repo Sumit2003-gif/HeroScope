@@ -104,7 +104,7 @@ const AboutTeam = () => {
             <button
               type="button"
               onClick={onCallNow}
-              className="flex-grow cursor-pointer py-3 border-l border-gray-200 hover:bg-gray-100 flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+              className="flex-grow cursor-pointerhOME py-3 border-l border-gray-200 hover:bg-gray-100 flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
             >
               <span role="img" aria-label="call now">
                 📞

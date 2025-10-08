@@ -64,7 +64,7 @@ const priceVariants = {
 const HomeCardsSection = () => {
   return (
     <motion.div
-      className="relative z-20 -mt-24 px-4 md:px-10"
+      className="relative z-20 my-4 px-4 md:px-10"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

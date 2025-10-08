@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import TopNavbar from './Components/TopNavbar';
 import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
@@ -15,7 +14,6 @@ const App = () => {
   return (
     <div>
       <ScrollToTop/>
-      <TopNavbar />
       <section>
         <Navbar />
       </section>
