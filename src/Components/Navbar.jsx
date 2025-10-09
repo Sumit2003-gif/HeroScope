@@ -84,7 +84,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
 
   return (
     <motion.nav
-      className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 md:px-20 py-4 fixed w-full z-50 shadow-lg"
+      className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 sm:px-6 md:px-10 lg:px-20 py-3 sm:py-4 fixed w-full z-50 shadow-lg"
       initial={false}
       animate={{
         top: showNavbar ? 0 : -100,
@@ -96,21 +96,21 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Left: Logo */}
-        <Link to="/" className="flex items-center" aria-label="Home">
+        <Link to="/" className="flex items-center justify-start mx-2 sm:mx-4" aria-label="Home">
           <img
             src="https://www.webstrot.com/html/horoscope/light_version/images/header/logo.png"
             alt="Company logo"
-            className="h-10 md:h-14"
+            className="h-8 sm:h-10 md:h-14"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-6 items-center font-semibold text-lg relative" aria-label="Desktop navigation">
+        <nav className="hidden md:flex space-x-4 lg:space-x-6 justify-between items-center font-semibold text-base lg:text-lg relative" aria-label="Desktop navigation">
           {menu.map((item, index) => (
             <React.Fragment key={index}>
               <Link 
                 to={item.path} 
-                className={`relative group transition duration-300 ${
+                className={`relative group transition text-nowrap duration-300 ${
                   location.pathname === item.path ? 'text-yellow-300' : 'text-white hover:text-yellow-300'
                 }`}
                 aria-current={location.pathname === item.path ? 'page' : undefined}
@@ -126,14 +126,14 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
                 />
               </Link>
               {index !== menu.length - 1 && (
-                <span className="text-yellow-200/50 select-none" aria-hidden="true">|</span>
+                <span className="text-yellow-200/50 select-none hidden lg:block" aria-hidden="true">|</span>
               )}
             </React.Fragment>
           ))}
         </nav>
 
         {/* Right side: Search + Cart */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden md:flex justify-between items-center space-x-3 lg:space-x-6">
           {/* Search */}
           <div className="relative group">
             <input
@@ -143,7 +143,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
               onChange={handleSearchChange}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
-              className="w-48 md:w-60 px-4 py-2 rounded-md bg-orange-400/30 border border-transparent placeholder-yellow-200 text-white focus:outline-none focus:border-yellow-300 transition duration-300"
+              className="w-32 sm:w-40 md:w-48 lg:w-60 px-3 py-1 md:px-4 md:py-2 rounded-md bg-orange-400/30 border border-transparent placeholder-yellow-200 text-white focus:outline-none focus:border-yellow-300 transition duration-300"
               aria-label="Search"
             />
             <motion.div
@@ -153,7 +153,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-300 pointer-events-none"
               aria-hidden="true"
             >
-              <Search size={20} />
+              <Search size={18} />
             </motion.div>
           </div>
 
@@ -164,7 +164,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
             whileTap={{ scale: 0.9 }}
             aria-label={`Shopping cart with ${cartCount} items`}
           >
-            <FiShoppingBag size={24} className="text-yellow-300" />
+            <FiShoppingBag size={20} className="text-yellow-300" />
             {cartCount > 0 && (
               <motion.span
                 className="absolute -top-2 -right-2 bg-yellow-300 text-orange-600 text-xs font-bold px-2 rounded-full"
@@ -189,7 +189,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
           aria-controls="mobile-menu"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
-          {mobileMenuOpen ? <X size={28} /> : <MenuIcon size={28} />}
+          {mobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
         </button>
       </div>
 
@@ -203,7 +203,7 @@ const Navbar = ({ cartCount = 3, onSearch }) => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden bg-orange-600 mt-3 rounded-md py-4 px-6 space-y-4 shadow-lg overflow-hidden"
+            className="md:hidden bg-orange-600 mt-3 rounded-md py-4 px-4 sm:px-6 space-y-4 shadow-lg overflow-hidden"
             role="navigation"
             aria-label="Mobile navigation"
           >
