@@ -125,7 +125,7 @@ const LatestNews = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
 {CardData.map((item, index) => (
-  <div key={index} className="flex justify-center sm:justify-start">
+  <div key={index} className="flex justify-center sm:justify-center">
     <Card {...item} />
   </div>
 ))}
