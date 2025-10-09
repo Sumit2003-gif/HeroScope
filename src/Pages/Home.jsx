@@ -22,7 +22,9 @@ const Home = () => {
       <section>
         <HomeAbout/>
       </section>
-     
+     <section>
+      <HomeZodac/>
+     </section>
       <section>
         <HomeService/>
       </section>

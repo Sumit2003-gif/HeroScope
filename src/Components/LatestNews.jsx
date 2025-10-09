@@ -124,9 +124,11 @@ const LatestNews = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {CardData.map((item, index) => (
-          <Card key={index} {...item} />
-        ))}
+{CardData.map((item, index) => (
+  <div key={index} className="flex justify-center sm:justify-start">
+    <Card {...item} />
+  </div>
+))}
       </motion.div>
     </section>
   );

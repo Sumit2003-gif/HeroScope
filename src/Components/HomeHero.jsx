@@ -129,7 +129,7 @@ const HomeHero = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 py-10 overflow-hidden"
+      className="relative bg-cover bg-center flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 py-10 overflow-hidden"
       style={{
         backgroundImage: `url("https://www.webstrot.com/html/horoscope/light_version/images/header/slide.jpg")`
       }}
@@ -155,16 +155,7 @@ const HomeHero = () => {
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
-        {LeftTextPages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setPage([index, index > page ? 1 : -1])}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${page === index ? 'bg-white scale-125' : 'bg-white/50'}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+     
 
       {/* Main Content */}
       <div className="relative z-20 w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -223,7 +214,7 @@ const HomeHero = () => {
         </div>
 
         {/* Right Content - Services Grid */}
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 hidden lg:block">
           <AnimatePresence initial={true} custom={direction} mode="wait">
             <motion.div
               key={page}
